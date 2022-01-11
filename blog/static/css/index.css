@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500&display=swap');
+
+@keyframes fade_move_down {
+    0% {
+        opacity: 0;
+        transform: translateY(-15px) rotate(45deg);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(15px) rotate(45deg);
+    }
+}
+
+@keyframes circle-1-move {
+    25% {
+        transform: translateX(75px);
+    }
+    50% {
+        transform: translate(75px, 75px);
+    }
+    75% {
+        transform: translateY(75px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes circle-2-move {
+    25% {
+        transform: translateY(75px);
+    }
+    50% {
+        transform: translate(-75px, 75px);
+    }
+    75% {
+        transform: translateX(-75px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes circle-3-move {
+    25% {
+        transform: translateY(-75px);
+    }
+    50% {
+        transform: translate(75px, -75px);
+    }
+    75% {
+        transform: translateX(75px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes circle-4-move {
+    25% {
+        transform: translateX(-75px);
+    }
+    50% {
+        transform: translate(-75px, -75px);
+    }
+    75% {
+        transform: translateY(-75px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+:root {
+    font-size: 1em;
+    box-sizing: border-box;
+    --welcome-text-color: white;
+    --text-color: black;
+    --a-color: rgb(161, 161, 161);
+    --background-color: rgb(244, 244, 244);
+}
+
+*,
+::before,
+::after {
+    box-sizing: inherit;
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(133, 129, 129, 0.97);
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-track {
+    display: none;
+}
+
+html, body {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 200vh;
+    background-color: var(--background-color);
+}
+
+body * + * {
+    margin-top: 1.5em;
+}
+
+.loading {
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    margin-top: 0;
+    background-color: var(--background-color);
+}
+
+.wrapper {
+    position: fixed;
+    display: grid;
+    top: 50%;
+    left: 50%;
+    width: 150px;
+    height: 150px;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+    transform: translate(-50%, -50%);
+}
+
+.circle {
+    margin-top: 0;
+    width: 60%;
+    height: 60%;
+    border-radius: 50%;
+}
+
+.circle-1 {
+    background-color: rgba(255, 182, 185, 1);
+    animation: circle-1-move 2s ease infinite;
+}
+
+.circle-2 {
+    background-color: rgba(250, 227, 217, 1);
+    animation: circle-2-move 2s ease infinite;
+}
+
+.circle-3 {
+    background-color: rgba(187, 222, 214, 1);
+    animation: circle-3-move 2s ease infinite;
+}
+
+.circle-4 {
+    background-color: rgba(138, 198, 209, 1);
+    animation: circle-4-move 2s ease infinite;
+}
+
+.welcome {
+    position: relative;
+    overflow: auto; /* 防止外边距折叠 */
+    height: 100vh;
+    background-image: url("../images/index.jpg");
+    /*background-image: url("https://api.ixiaowai.cn/gqapi/gqapi.php");*/
+    background-size: cover;
+    background-position: center;
+}
+
+.heart-icon {
+    text-align: center;
+    margin: 15vh calc(50vw - 24px - 1.5em) 0;
+    padding: 1.5em;
+    border-bottom: 2px solid var(--welcome-text-color, white);
+}
+
+.info {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    text-align: center;
+    color: var(--welcome-text-color, white);
+}
+
+.welcome h1 {
+    font-size: 4rem;
+    margin-top: 0.5em;
+    letter-spacing: 0.3rem;
+    text-transform: uppercase;
+}
+
+.welcome p {
+    font-size: 1.2rem;
+    letter-spacing: 0.2rem;
+}
+
+.welcome .scroll-down {
+    margin-top: 0;
+    position: absolute;
+    left: calc(50vw - 10px - 2px);
+    bottom: 60px;
+    height: 20px;
+    width: 20px;
+    transform: rotate(45deg);
+    border-right: 3px solid var(--welcome-text-color, white);
+    border-bottom: 3px solid var(--welcome-text-color, white);
+    animation: fade_move_down 2s ease-in-out infinite;
+    cursor: pointer;
+}
