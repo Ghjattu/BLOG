@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+   {{ admin.username }}
+{% endblock %}
+
+
+{% block css %}
+   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/blog/index.css') }}">
+{% endblock %}
+
+
+{% block script %}
+   <script src="{{ url_for('static', filename='js/blog/index.js') }}"></script>
+{% endblock %}
+
+
+{% block header %}
+   <header>
+      <div class="heart-icon">
+         <svg x="1641131321775" class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"
+              p-id="572" width="48" height="48">
+            <path d="M694.7 261.3c32.4 0 62.9 12.6 85.8 35.5s35.5 53.4 35.5 85.8-12.6 62.9-35.5 85.8l-97.2 97.2 0.3 0.3L512 737.5 246.9 472.3l-1.1-1.2c-21.8-23-33.7-53.2-33.3-85 0.4-31.8 13-61.8 35.5-84.3 22.9-22.9 53.4-35.5 85.8-35.5 31.2 0 60.8 11.8 83.4 33.2l97.1 92 94.6-94.6 0.3-0.3c22.8-22.8 53.2-35.3 85.5-35.3m0-137.4c-66.2 0-132.4 25.3-183 75.8l-0.1 0.1C461.8 152.6 397.7 129 333.7 129c-66.2 0-132.4 25.3-183 75.8-99.5 99.5-101 259.7-4.7 361.1l-0.1 0.1L512 931.8l365.9-365.9-0.3-0.3c101-101 101-264.9 0-365.9-50.5-50.6-116.7-75.8-182.9-75.8z"
+                  p-id="573" fill="#ffffff"></path>
+         </svg>
+      </div>
+      <h1 class="info">{{ admin.username }}</h1>
+      <p class="info">{{ admin.signature }}</p>
+      <div class="wave">
+         <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+              viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+            <defs>
+               <path id="gentle-wave"
+                     d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
+            </defs>
+            <g class="parallax">
+               <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7"></use>
+               <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)"></use>
+               <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)"></use>
+               <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff"></use>
+            </g>
+         </svg>
+      </div>
+      <div class="scroll-down" id="scroll-down">
+         <span></span>
+      </div>
+   </header>
+{% endblock %}
+
+
+{% block main %}
+   {#   Background Partcles   #}
+   <div class="particle-container">
+      <canvas class="bg-particles"></canvas>
+   </div>
+   {#   End   #}
+   <div class="main-wrapper" id="anchor">
+      <main>
+         <div class="main-title">
+            <h1>Article</h1>
+            <p>Latest Release</p>
+         </div>
+         <div class="main-articles">
+            {% if posts %}
+               {% for post in posts %}
+                  <article>
+                     <aside class="bg-image-container">
+                        <a href="{{ url_for('.show_post', post_id=post.id) }}">
+                           <img class="bg-image" src="https://api.ixiaowai.cn/mcapi/mcapi.php" alt="background-image">
+                        </a>
+                     </aside>
+                     <div class="article-summary">
+                        <h2 class="summary-title"><a
+                                href="{{ url_for('.show_post', post_id=post.id) }}">{{ post.title }}</a></h2>
+                        <p>{{ post.body|striptags|truncate(length=150, end='......') }}</p>
+                     </div>
+                  </article>
+               {% endfor %}
+            {% endif %}
+         </div>
+      </main>
+   </div>
+
+{% endblock %}

@@ -4,11 +4,11 @@ import os
 from flask import Flask, render_template
 
 from blog.extensions import db, moment
-from blog.models import Post, Tag
+from blog.models import Admin
 from blog.settings import config
 from blog.views.admin import admin_bp
 from blog.views.authorize import authorize_bp
-from blog.views.index import index_bp
+from blog.views.blog import blog_bp
 
 
 def create_app(config_name=None):
@@ -22,12 +22,13 @@ def create_app(config_name=None):
     register_shell_context(app)
     register_error_handlers(app)
     register_commands(app)
+    register_template_context(app)
 
     return app
 
 
 def register_blueprints(app):
-    app.register_blueprint(index_bp)
+    app.register_blueprint(blog_bp)
     app.register_blueprint(authorize_bp, url_prefix='/authorize')
     app.register_blueprint(admin_bp, url_prefix='/admin')
 
@@ -40,7 +41,7 @@ def register_extensions(app):
 def register_shell_context(app):
     @app.shell_context_processor
     def make_shell_context():
-        return dict(db=db, Post=Post, Tag=Tag)
+        return dict(db=db)
 
 
 def register_error_handlers(app):
@@ -66,3 +67,10 @@ def register_commands(app):
         fake_posts(post)
 
         click.echo('Done.')
+
+
+def register_template_context(app):
+    @app.context_processor
+    def make_template_context():
+        admin = Admin.query.first()
+        return dict(admin=admin)

@@ -11,9 +11,11 @@ fake = Faker()
 
 def fake_admin():
     admin = Admin(
-        username='admin',
-        blog_title='Ghjattu\'s blog'
+        username='Ghjattu',
+        blog_title='Ghjattu\'s blog',
+        signature='I want to put a ding in the universe.'
     )
+    admin.set_password('123456')
     db.session.add(admin)
     db.session.commit()
 
