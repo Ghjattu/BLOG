@@ -1,18 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
 
 :root {
     font-size: calc(1vw + 0.6em);
     font-family: "Noto Serif SC", serif;
     box-sizing: border-box;
-    --background-color: rgba(255, 255, 255, 0.6);
+    --websit-background-color: rgba(217, 217, 217, 0.4);
+    --nav-background-color: rgba(255, 255, 255, 0.75);
+    --nav-hover-background-color: rgba(255, 255, 255, 0.9);
+    --nav-menu-dropdown-background-color: rgba(255, 255, 255, 1);
     --article-background-color: rgba(255, 255, 255, 1);
     --progress-bar-color: rgba(0, 0, 0, 1);
+    --loading-background-color: rgba(255, 255, 255, 1);
     --a-hover-color: rgba(8, 255, 200, 1);
     --header-text-color: white;
     --text-color: black;
     --main-title-p-color: rgba(163, 163, 163, 1);
     --main-title-border-color: rgba(218, 218, 218, 1);
+    --menu-toggle-background-color: rgba(0, 0, 0, 1);
 }
 
 @media (min-width: 50em) {
@@ -57,37 +63,175 @@ a:hover {
 }
 
 /* Navigation */
-nav {
-    display: none;
+.menu {
+    display: flex;
     position: fixed;
     top: 0;
     width: 100%;
-    margin-top: 0;
-}
-
-.nav-list {
-    display: flex;
-    justify-content: center;
     margin: 0;
-    padding: .7em 3em;
-    list-style-type: none;
-    box-shadow: 0 0 2px 1px rgb(229, 229, 229);
+    padding: 1em 2em;
+    background-color: var(--nav-hover-background-color);
+    backdrop-filter: blur(2px);
+    justify-content: space-between;
+    align-items: center;
+    transition: all .5s ease;
 }
 
-.nav-list > li {
-    margin-top: 0;
+@media (min-width: 50em) {
+    .menu {
+        width: calc(100% - 1em);
+        margin: 1em .5em;
+        padding: .5em;
+        border-radius: 10px;
+    }
 }
 
-.nav-list > li > a {
+@media (min-width: 75em) {
+    .menu {
+        width: calc(100% - 5em);
+        margin: 1em 2.5em;
+        padding: .5em 2em;
+        border-radius: 15px;
+        background-color: var(--nav-background-color);
+    }
+}
+
+.menu:hover {
+    background-color: var(--nav-hover-background-color);
+}
+
+.username {
+    margin: 0;
+    font-family: 'Kaushan Script', cursive;
+    font-weight: normal;
+    letter-spacing: .05em;
+}
+
+.menu-toggle {
+    position: relative;
+    display: flex;
+    margin: 0;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.menu-toggle > span {
+    display: block;
+    margin: 0;
+    width: 37px;
+    height: 4px;
+    border-radius: 10px;
+    background-color: var(--menu-toggle-background-color);
+    transform-origin: left center;
+    transition: all 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+
+.menu-toggle > span:nth-child(2) {
+    margin: 6px 0;
+    transform-origin: center;
+}
+
+.menu.is-open span:nth-child(1) {
+    transform: rotate(45deg) translateY(-4px);
+}
+
+.menu.is-open span:nth-child(2) {
+    transform: scale(0.2, 0.2);
+    opacity: 0;
+}
+
+.menu.is-open span:nth-child(3) {
+    transform: rotate(-45deg) translateY(4px);
+}
+
+@media (min-width: 50em) {
+    .menu-toggle {
+        display: none;
+    }
+}
+
+.menu-dropdown {
+    display: none;
+    position: fixed;
+    margin: 0;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 40vw;
+    background-color: var(--nav-menu-dropdown-background-color);
+}
+
+@media (min-width: 50em) {
+    .menu-dropdown {
+        display: flex;
+        position: static;
+        height: auto;
+        width: auto;
+        background: none;
+    }
+}
+
+.menu.is-open .menu-dropdown {
+    display: block;
+}
+
+.menu-list {
+    margin-top: 6.5em;
+    padding: 0;
+}
+
+.menu-list > li {
+    margin: 0;
+    list-style: none;
+}
+
+.menu-list > li > a {
+    position: relative;
     display: block;
     padding: .5em 1em;
-    font-family: 'Noto Serif SC', serif;
-    font-size: 1.1rem;
-    color: var(--text-color, black);
+    font-weight: 300;
+    color: var(--text-color);
     text-decoration: none;
+    text-align: center;
+    transition: color .25s ease;
+}
+
+@media (min-width: 50em) {
+    .menu-list {
+        display: flex;
+        margin: 0;
+        padding: 0;
+    }
+
+    .menu-list > li > a {
+        padding: 1em;
+    }
+}
+
+.menu-list > li > a:after {
+    position: absolute;
+    display: block;
+    content: "";
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--a-hover-color);
+    transition: width .3s ease 0s;
+}
+
+.menu-list > li > a:hover {
+    color: var(--a-hover-color);
+}
+
+.menu-list > li > a:hover:after {
+    width: 100%;
 }
 
 /* End Navigation */
+
 
 /* Progress Bar*/
 .progress-bar {
@@ -102,6 +246,7 @@ nav {
 
 /* End Progress Bar*/
 
+
 /* Loading */
 .loading {
     position: fixed;
@@ -109,10 +254,10 @@ nav {
     height: 100vh;
     width: 100vw;
     margin-top: 0;
-    background-color: var(--background-color);
+    background-color: var(--loading-background-color);
 }
 
-.wrapper {
+.loading-wrapper {
     position: fixed;
     display: grid;
     top: 50%;
@@ -154,6 +299,20 @@ nav {
 }
 
 /* End Loading */
+
+
+/*.body-wrapper {*/
+/*    position: fixed;*/
+/*    display: none;*/
+/*    top: 0;*/
+/*    height: 100vh;*/
+/*    width: 100vw;*/
+/*    margin: 0;*/
+/*}*/
+
+/*.body-wrapper.is-open {*/
+/*    background-color: rgba(208, 208, 208, 0.4);*/
+/*}*/
 
 @keyframes circle-1-move {
     25% {

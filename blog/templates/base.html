@@ -21,20 +21,31 @@
 
 {% block footer %}{% endblock %}
 
-<nav>
-   <ul class="nav-list">
-      <li><a href="#">主页</a></li>
-      <li><a href="#">分类</a></li>
-      <li><a href="#">标签</a></li>
-      <li><a href="#">归档</a></li>
-      <li><a href="#">友链</a></li>
-   </ul>
+
+<nav class="menu" id="menu">
+   <h1 class="username">{{ admin.username }}</h1>
+   <div class="menu-toggle" id="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+   </div>
+   <div class="menu-dropdown">
+      <ul class="menu-list">
+         <li><a href="#">主页</a></li>
+         <li><a href="#">分类</a></li>
+         <li><a href="#">标签</a></li>
+         <li><a href="#">归档</a></li>
+         <li><a href="#">友链</a></li>
+      </ul>
+   </div>
 </nav>
+
+{#<div class="body-wrapper" id="body-wrapper"></div>#}
 
 <div class="progress-bar" id="progress-bar"></div>
 
 <div class="loading">
-   <div class="wrapper">
+   <div class="loading-wrapper">
       <div class="circle circle-1"></div>
       <div class="circle circle-2"></div>
       <div class="circle circle-3"></div>

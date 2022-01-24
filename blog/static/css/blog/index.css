@@ -25,7 +25,8 @@
 header {
     overflow: auto; /* 防止外边距折叠 */
     height: 100vh;
-    background-image: url("../../images/index.jpg");
+    background-color: black;
+    /*background-image: url("../../images/index.jpg");*/
     background-size: cover;
     background-position: center;
 }
@@ -91,19 +92,6 @@ header > p {
     animation-duration: 20s;
 }
 
-/*.scroll-down {*/
-/*    position: absolute;*/
-/*    margin-top: 0;*/
-/*    left: calc(50vw - 10px - 2px);*/
-/*    bottom: 60px;*/
-/*    height: 20px;*/
-/*    width: 20px;*/
-/*    transform: rotate(45deg);*/
-/*    border-right: 3px solid var(--header-text-color, white);*/
-/*    border-bottom: 3px solid var(--header-text-color, white);*/
-/*    animation: fade_move_down 2s ease-in-out infinite;*/
-/*    cursor: pointer;*/
-/*}*/
 .scroll-down {
     position: absolute;
     margin: 0;
@@ -151,7 +139,7 @@ header > p {
     margin-top: 0;
     width: 100%;
     overflow: hidden;
-    background-color: var(--background-color);
+    background-color: var(--websit-background-color);
 }
 
 main {
@@ -174,7 +162,7 @@ main {
 .main-title > h1 {
     position: relative;
     font-size: 1.4rem;
-    font-weight: normal;
+    font-weight: 500;
 }
 
 .main-title > p {

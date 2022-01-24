@@ -4,13 +4,12 @@
 //     }
 // };
 window.onload = function () {
-    // console.log('onload');
+    console.log('onload');
     let loading = document.getElementsByClassName('loading')[0];
     loading.style.display = 'none';
 
     let anchorLink = document.getElementById('scroll-down');
     let anchorLocation = document.getElementById('anchor');
-    console.log(anchorLocation.offsetTop);
     anchorLink.addEventListener('click', function (e) {
         if (window.scrollTo) {
             e.preventDefault();
@@ -29,8 +28,31 @@ window.onload = function () {
 
     Particles.init({
         selector: '.bg-particles',
-        maxParticles: 80,
-        // sizeVariations: 4,
+        // 1201px ~
+        maxParticles: 70,
         connectParticles: true,
+
+        responsive: [
+            {
+                // 800px ~ 1200px
+                breakpoint: 1200,
+                options: {
+                    maxParticles: 60,
+                }
+            }, {
+                // 481px ~ 799px
+                breakpoint: 800,
+                options: {
+                    maxParticles: 50,
+                }
+            }, {
+                // 0 ~ 480px
+                breakpoint: 480,
+                options: {
+                    maxParticles: 0,
+                    connectParticles: false,
+                }
+            }
+        ]
     });
 };
