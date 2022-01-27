@@ -3,11 +3,7 @@
 //         console.log('complete');
 //     }
 // };
-window.onload = function () {
-    console.log('onload');
-    let loading = document.getElementsByClassName('loading')[0];
-    loading.style.display = 'none';
-
+$(function () {
     let anchorLink = document.getElementById('scroll-down');
     let anchorLocation = document.getElementById('anchor');
     anchorLink.addEventListener('click', function (e) {
@@ -16,15 +12,6 @@ window.onload = function () {
             window.scrollTo({"behavior": "smooth", "top": anchorLocation.offsetTop});
         }
     });
-
-    let images = document.getElementsByClassName('bg-image');
-    for (let i = 0; i < images.length; i++) {
-        // images[i].setAttribute("src", "https://api.ixiaowai.cn/mcapi/mcapi.php");
-        if (i % 2 === 0)
-            images[i].style.borderRadius = "10px 0 0 10px";
-        else
-            images[i].style.borderRadius = "0 10px 10px 0";
-    }
 
     Particles.init({
         selector: '.bg-particles',
@@ -49,10 +36,10 @@ window.onload = function () {
                 // 0 ~ 480px
                 breakpoint: 480,
                 options: {
-                    maxParticles: 0,
+                    maxParticles: 50,
                     connectParticles: false,
                 }
             }
         ]
     });
-};
+});

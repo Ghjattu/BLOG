@@ -7,9 +7,41 @@ window.onscroll = () => {
     let scrollTop = Math.ceil(document.documentElement.scrollTop);
     progressBar.style.width = (scrollTop * 100 / max) + "%";
 }
+window.onload = function () {
+    let loading = document.getElementsByClassName('loading')[0];
+    loading.style.display = 'none';
 
+    let scroll = function () {
+        let top = $(window).scrollTop();
+        let menu = document.getElementById('menu');
+        if (top !== 0) {
+            menu.classList.add('not-at-top');
+        } else {
+            menu.classList.remove('not-at-top');
+        }
+    }
+    let raf = window.requestAnimationFrame;
+    let $window = $(window);
+    let lastScrollTop = $window.scrollTop();
+
+    if (raf) {
+        loop();
+    }
+
+    function loop() {
+        let scrollTop = $window.scrollTop();
+        if (lastScrollTop === scrollTop) {
+            raf(loop);
+        }else {
+            lastScrollTop = scrollTop;
+
+            // 如果进行了垂直滚动，执行scroll方法
+            scroll();
+            raf(loop);
+        }
+    }
+}
 $(function () {
-    console.log('1');
     /*
      * Hamburger Menu
      */
@@ -18,10 +50,6 @@ $(function () {
         console.log('1');
         e.preventDefault();
         let menu = document.getElementById('menu');
-        // let bodyWrapper = document.getElementById('body-wrapper');
         menu.classList.toggle('is-open');
-        // bodyWrapper.classList.toggle('is-open');
-        // bodyWrapper.style.display = 'block';
-        // toggleButton.style.zIndex = 2;
     });
 });

@@ -1,7 +1,8 @@
 import click
 import os
+import markdown
 
-from flask import Flask, render_template
+from flask import Flask, render_template, Markup
 
 from blog.extensions import db, moment
 from blog.models import Admin
@@ -23,6 +24,7 @@ def create_app(config_name=None):
     register_error_handlers(app)
     register_commands(app)
     register_template_context(app)
+    register_template_filter(app)
 
     return app
 
@@ -46,8 +48,8 @@ def register_shell_context(app):
 
 def register_error_handlers(app):
     @app.errorhandler(404)
-    def page_not_found():
-        return render_template('errors/404.html'), 404
+    def page_not_found(e):
+        return render_template('errors/404.html', e=e), 404
 
 
 def register_commands(app):
@@ -74,3 +76,14 @@ def register_template_context(app):
     def make_template_context():
         admin = Admin.query.first()
         return dict(admin=admin)
+
+
+def register_template_filter(app):
+    @app.template_filter('MDtoHTML')
+    def md_to_html(mdcontent):
+        content = Markup(markdown.markdown(mdcontent, extensions=[
+            'markdown.extensions.extra',
+            'markdown.extensions.fenced_code',
+            'markdown.extensions.toc'
+        ]))
+        return content

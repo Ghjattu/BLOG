@@ -1,24 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: normal;
+    src: url("../fonts/JetBrainsMono-Regular.woff2") format('woff2');
+}
 
 :root {
     font-size: calc(1vw + 0.6em);
     font-family: "Noto Serif SC", serif;
     box-sizing: border-box;
-    --websit-background-color: rgba(217, 217, 217, 0.4);
+    --website-background-color: rgba(240, 240, 240, 0.2);
     --nav-background-color: rgba(255, 255, 255, 0.75);
     --nav-hover-background-color: rgba(255, 255, 255, 0.9);
     --nav-menu-dropdown-background-color: rgba(255, 255, 255, 1);
     --article-background-color: rgba(255, 255, 255, 1);
+    --article-summary-color: rgba(116, 116, 116, 1);
+    --article-timestamp-background-color: rgba(8, 255, 200, 0.2);
+    --article-timestamp-text-color: rgba(0, 140, 158, 1);
     --progress-bar-color: rgba(0, 0, 0, 1);
     --loading-background-color: rgba(255, 255, 255, 1);
-    --a-hover-color: rgba(8, 255, 200, 1);
+    --a-hover-color: rgba(0, 223, 252, 1);
     --header-text-color: white;
     --text-color: black;
     --main-title-p-color: rgba(163, 163, 163, 1);
     --main-title-border-color: rgba(218, 218, 218, 1);
     --menu-toggle-background-color: rgba(0, 0, 0, 1);
+
+    --article-info-color: rgba(119, 119, 119, 1);
+    --article-info-border-color: rgba(218, 218, 218, 1);
+    --article-catalog-text-color: rgba(80, 80, 80, 1);
+    --article-catalog-border-color: rgba(218, 218, 218, 1);
 }
 
 @media (min-width: 50em) {
@@ -35,6 +50,7 @@
 
 ::-webkit-scrollbar {
     width: 4px;
+    height: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -70,11 +86,10 @@ a:hover {
     width: 100%;
     margin: 0;
     padding: 1em 2em;
-    background-color: var(--nav-hover-background-color);
-    backdrop-filter: blur(2px);
+    /*background-color: var(--nav-hover-background-color);*/
     justify-content: space-between;
     align-items: center;
-    transition: all .5s ease;
+    transition: all .75s ease;
 }
 
 @media (min-width: 50em) {
@@ -92,8 +107,12 @@ a:hover {
         margin: 1em 2.5em;
         padding: .5em 2em;
         border-radius: 15px;
-        background-color: var(--nav-background-color);
+        /*background-color: var(--nav-background-color);*/
     }
+}
+
+.menu.not-at-top {
+    background-color: var(--nav-background-color);
 }
 
 .menu:hover {
@@ -125,7 +144,7 @@ a:hover {
     border-radius: 10px;
     background-color: var(--menu-toggle-background-color);
     transform-origin: left center;
-    transition: all 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+    transition: all 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
 }
 
 .menu-toggle > span:nth-child(2) {
