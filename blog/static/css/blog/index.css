@@ -22,13 +22,20 @@
 }
 
 /* Header */
+.index-bg-image {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-image: url("../../images/index.png");
+    background-position: center;
+    background-size: cover;
+    z-index: -1;
+}
+
 header {
+    margin: 0;
     overflow: auto; /* 防止外边距折叠 */
     height: 100vh;
-    background-color: black;
-    background-image: url("../../images/index.jpg");
-    background-size: cover;
-    background-position: center;
 }
 
 .heart-icon {
@@ -119,22 +126,6 @@ header > p {
 /* End Header */
 
 /* Main */
-.particle-container {
-    position: fixed;
-    margin: 0;
-    top: 0;
-    width: 100%;
-    height: 100vh;
-    z-index: -1;
-}
-
-.bg-particles {
-    position: absolute;
-    display: block;
-    top: 0;
-    left: 0;
-    z-index: 0;
-}
 
 .main-wrapper {
     position: relative;
