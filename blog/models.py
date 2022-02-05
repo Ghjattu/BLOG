@@ -3,11 +3,11 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 from blog.extensions import db
 
-# Post and Tag
+# Article and Tag
 association_table = db.Table(
     'association',
     db.Column('tag_id', db.Integer, db.ForeignKey('tag.id')),
-    db.Column('post_id', db.Integer, db.ForeignKey('post.id'))
+    db.Column('article_id', db.Integer, db.ForeignKey('article.id'))
 )
 
 
@@ -25,27 +25,27 @@ class Admin(db.Model):
         return check_password_hash(self.password_hash, password)
 
 
-class Post(db.Model):
+class Article(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), unique=True)
     body = db.Column(db.Text)
     timestamp = db.Column(db.DateTime, default=datetime.utcnow())
 
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
-    category = db.relationship('Category', back_populates='posts')
+    category = db.relationship('Category', back_populates='articles')
 
-    tags = db.relationship('Tag', secondary=association_table, back_populates='posts')
+    tags = db.relationship('Tag', secondary=association_table, back_populates='articles')
 
 
 class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), unique=True)
 
-    posts = db.relationship('Post', back_populates='category')
+    articles = db.relationship('Article', back_populates='category')
 
 
 class Tag(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), unique=True)
 
-    posts = db.relationship('Post', secondary=association_table, back_populates='tags')
+    articles = db.relationship('Article', secondary=association_table, back_populates='tags')

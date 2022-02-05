@@ -1,37 +1,4 @@
-@keyframes fade_move_down {
-    0% {
-        opacity: 0;
-        transform: translateY(-20px) rotate(45deg);
-    }
-    50% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-        transform: translateY(10px) rotate(45deg);
-    }
-}
-
-@keyframes move_forever {
-    0% {
-        transform: translateX(-90px);
-    }
-    100% {
-        transform: translateX(85px);
-    }
-}
-
 /* Header */
-.index-bg-image {
-    position: fixed;
-    height: 100%;
-    width: 100%;
-    background-image: url("../../images/index.png");
-    background-position: center;
-    background-size: cover;
-    z-index: -1;
-}
-
 header {
     margin: 0;
     overflow: auto; /* 防止外边距折叠 */
@@ -125,8 +92,8 @@ header > p {
 
 /* End Header */
 
-/* Main */
 
+/* Main */
 .main-wrapper {
     position: relative;
     margin-top: 0;
@@ -201,7 +168,7 @@ main {
     box-shadow: 0 1px 20px 10px #e8e8e8;
 }
 
-article > .bg-image-container {
+article > .article-image-container {
     max-height: 300px;
 }
 
@@ -216,12 +183,12 @@ article > .article-summary {
     }
 }
 
-.bg-image-container a {
+.article-image-container a {
     display: block;
     height: 100%;
 }
 
-.bg-image-container .bg-image {
+.article-image-container .article-image {
     width: 100%;
     max-width: 100%;
     height: 100%;
@@ -240,7 +207,7 @@ article > .article-summary {
         flex-direction: row-reverse;
     }
 
-    article > .bg-image-container {
+    article > .article-image-container {
         flex: 4;
         max-height: none;
     }
@@ -251,15 +218,15 @@ article > .article-summary {
         padding: 1em 2em;
     }
 
-    .bg-image-container .bg-image {
+    .article-image-container .article-image {
         max-height: none;
     }
 
-    .main-articles > article:nth-child(odd) .bg-image {
+    .main-articles > article:nth-child(odd) .article-image {
         border-radius: 10px 0 0 10px;
     }
 
-    .main-articles > article:nth-child(even) .bg-image {
+    .main-articles > article:nth-child(even) .article-image {
         border-radius: 0 10px 10px 0;
     }
 }
@@ -344,5 +311,27 @@ article > .article-summary {
     margin: 0;
 }
 
-
 /* End Main */
+
+@keyframes fade_move_down {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px) rotate(45deg);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(10px) rotate(45deg);
+    }
+}
+
+@keyframes move_forever {
+    0% {
+        transform: translateX(-90px);
+    }
+    100% {
+        transform: translateX(85px);
+    }
+}

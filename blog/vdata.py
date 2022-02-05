@@ -2,7 +2,7 @@ import random
 
 from sqlalchemy.exc import IntegrityError
 
-from blog.models import Admin, Post, Category, Tag
+from blog.models import Admin, Article, Category, Tag
 from blog.extensions import db
 from faker import Faker
 
@@ -20,16 +20,16 @@ def fake_admin():
     db.session.commit()
 
 
-def fake_posts(count=50):
+def fake_articles(count=50):
     for i in range(count):
-        post = Post(
+        article = Article(
             title=fake.sentence(),
             body=fake.text(1000),
             timestamp=fake.date_time_this_year(),
             category=Category.query.get(random.randint(1, Category.query.count())),
             tags=[Tag.query.get(random.randint(1, Tag.query.count())) for _ in range(2)]
         )
-        db.session.add(post)
+        db.session.add(article)
         try:
             db.session.commit()
         except IntegrityError:

@@ -11,13 +11,14 @@
 
    <script src="{{ url_for('static', filename='js/jquery-3.6.0.min.js') }}"></script>
    <script src="{{ url_for('static', filename='js/base.js') }}"></script>
-   <script src="{{ url_for('static', filename='js/particles.min.js') }}"></script>
    {% block script %}{% endblock %}
 
    {{ moment.include_moment() }}
    {{ moment.lang('zh-CN') }}
 </head>
 <body>
+
+<div class="bg-image"></div>
 
 {% block header %}{% endblock %}
 
@@ -43,8 +44,6 @@
       </ul>
    </div>
 </nav>
-
-{#<div class="body-wrapper" id="body-wrapper"></div>#}
 
 <div class="progress-bar" id="progress-bar"></div>
 

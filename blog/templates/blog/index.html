@@ -17,7 +17,6 @@
 
 
 {% block header %}
-   <div class="index-bg-image"></div>
 
    <header>
       <div class="heart-icon">
@@ -60,28 +59,28 @@
             <p>Latest Release</p>
          </div>
          <div class="main-articles">
-            {% if posts %}
-               {% for post in posts %}
+            {% if articles %}
+               {% for article in articles %}
                   <article>
-                     <aside class="bg-image-container">
-                        <a href="{{ url_for('.show_post', post_id=post.id) }}">
-                           <img class="bg-image" src="https://api.ixiaowai.cn/mcapi/mcapi.php" alt="background-image">
+                     <aside class="article-image-container">
+                        <a href="{{ url_for('.show_article', article_id=article.id) }}">
+                           <img class="article-image" src="https://api.ixiaowai.cn/mcapi/mcapi.php" alt="background-image">
                         </a>
                      </aside>
                      <div class="article-summary">
                         <h3 class="article-title">
-                           <a href="{{ url_for('.show_post', post_id=post.id) }}">{{ post.title }}</a>
+                           <a href="{{ url_for('.show_article', article_id=article.id) }}">{{ article.title }}</a>
                         </h3>
-                        <p>{{ post.body|striptags|truncate(length=150, end='......') }}</p>
+                        <p>{{ article.body|striptags|truncate(length=150, end='......') }}</p>
                         <div class="article-tags">
-                           {% for tag in post.tags %}
+                           {% for tag in article.tags %}
                               <a class="tag" href="#">
                                  <span class="material-icons md-18">&#xE9EF;</span>
                                  <span>{{ tag.name }}</span>
                               </a>
                            {% endfor %}
                            <div class="article-timestamp">
-                              <span>发布于&nbsp;</span>{{ moment(post.timestamp).format('YYYY-MM-DD') }}
+                              <span>发布于&nbsp;</span>{{ moment(article.timestamp).format('YYYY-MM-DD') }}
                            </div>
                         </div>
                      </div>

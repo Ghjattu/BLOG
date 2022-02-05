@@ -13,7 +13,7 @@
     font-size: calc(1vw + 0.6em);
     font-family: "Noto Serif SC", serif;
     box-sizing: border-box;
-    --website-background-color: rgba(255, 255, 255, 0.6);
+    --website-background-color: rgba(255, 255, 255, 0.7);
     --nav-background-color: rgba(255, 255, 255, 0.75);
     --nav-hover-background-color: rgba(255, 255, 255, 0.9);
     --nav-menu-dropdown-background-color: rgba(255, 255, 255, 1);
@@ -77,6 +77,20 @@ body * + * {
 a:hover {
     color: var(--a-hover-color);
 }
+
+/* Background Image */
+.bg-image {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-image: url("../images/bg-image.png");
+    background-position: center;
+    background-size: cover;
+    z-index: -1;
+}
+
+/* End Background Image */
+
 
 /* Navigation */
 .menu {

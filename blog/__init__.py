@@ -56,9 +56,9 @@ def register_commands(app):
     @app.cli.command()
     @click.option('--category', default=10)
     @click.option('--tag', default=5)
-    @click.option('--post', default=50)
-    def forge(category, tag, post):
-        from blog.vdata import fake_admin, fake_posts, fake_categories, fake_tags
+    @click.option('--article', default=50)
+    def forge(category, tag, article):
+        from blog.vdata import fake_admin, fake_articles, fake_categories, fake_tags
 
         db.drop_all()
         db.create_all()
@@ -66,7 +66,7 @@ def register_commands(app):
         fake_admin()
         fake_categories(category)
         fake_tags(tag)
-        fake_posts(post)
+        fake_articles(article)
 
         click.echo('Done.')
 

@@ -1,13 +1,3 @@
-.bg-image-container {
-    position: fixed;
-    height: 100%;
-    width: 100%;
-    background-image: url("../../images/63.jpg");
-    background-position: center;
-    background-size: cover;
-    z-index: -1;
-}
-
 .wrapper {
     margin: 0;
     /*overflow: hidden;*/
@@ -120,7 +110,7 @@ main {
     display: none;
 }
 
-@media (min-width: 50em) {
+@media (min-width: 75em) {
     .article-catalog {
         flex: 1;
         margin: 0;
