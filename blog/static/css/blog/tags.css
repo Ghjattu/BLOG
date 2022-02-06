@@ -1,0 +1,122 @@
+.wrapper {
+    margin: 0;
+    min-height: 100vh;
+    background-color: var(--website-background-color);
+}
+
+main {
+    padding: 1.5em;
+}
+
+.tag-header {
+    margin-top: 8em;
+    text-align: center;
+}
+
+.tag-title {
+    display: inline-block;
+    padding-right: .5em;
+    font-size: 1.4rem;
+    font-weight: normal;
+    border-right: 1px dashed #ddd;
+}
+
+.tag-subtitle {
+    margin: 0;
+    padding-left: .5em;
+    color: rgba(119, 119, 119, 1);
+    text-transform: uppercase;
+}
+
+.tag-cloud {
+    display: flex;
+    margin: 0 auto;
+    padding: 1.5em;
+    max-width: 500px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(6px);
+    border-radius: 5px;
+}
+
+.tag-cloud li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.tag-cloud a {
+    --size: 4;
+    --color: rgba(234, 112, 112, 1);
+
+    position: relative;
+    padding: .15em;
+    font-size: calc(var(--size) * 0.25rem + 0.5rem);
+    color: var(--color);
+    text-decoration: none;
+}
+
+.tag-cloud a::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 1px;
+    width: 0;
+    background-color: var(--color);
+    transition: width .25s ease;
+}
+
+.tag-cloud a:hover::before {
+    width: 100%;
+}
+
+.tag-cloud a[data-weight="1"] {
+    --size: 4;
+}
+
+.tag-cloud a[data-weight="2"] {
+    --size: 5;
+}
+
+.tag-cloud a[data-weight="3"] {
+    --size: 6;
+}
+
+.tag-cloud a[data-weight="4"] {
+    --size: 7;
+}
+
+.tag-cloud a[data-weight="5"] {
+    --size: 9;
+}
+
+.tag-cloud a[data-weight="6"] {
+    --size: 11;
+}
+
+.tag-cloud a[data-weight="7"] {
+    --size: 13;
+}
+
+.tag-cloud a[data-weight="8"] {
+    --size: 16;
+}
+
+.tag-cloud a[data-weight="9"] {
+    --size: 19;
+}
+
+.tag-cloud li:nth-child(2n+1) a {
+    --color: rgba(253, 196, 182, 1);
+}
+
+.tag-cloud li:nth-child(3n+1) a {
+    --color: rgba(229, 149, 114, 1);
+}
+
+.tag-cloud li:nth-child(4n+1) a {
+    --color: rgba(38, 148, 171, 1);
+}

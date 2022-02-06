@@ -18,3 +18,8 @@ def show_article(article_id):
     article = Article.query.get_or_404(article_id)
     return render_template('blog/article.html', article=article)
 
+
+@blog_bp.route('/tags')
+def show_tags():
+    tags = Tag.query.all()
+    return render_template('blog/tags.html', tags=tags)

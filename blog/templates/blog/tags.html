@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+
+{% block css %}
+   <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/blog/tags.css') }}">
+{% endblock %}
+
+
+{% block script %}
+   <script src="{{ url_for('static', filename='js/blog/tags.js') }}"></script>
+{% endblock %}
+
+
+{% block main %}
+   <div class="wrapper">
+      <main>
+         <div class="tag-header">
+            <h1 class="tag-title">标签</h1>
+            <span class="tag-subtitle">tag</span>
+         </div>
+         <div class="tag-container">
+            {% if tags %}
+               <ul class="tag-cloud">
+                  {% for tag in tags %}
+                     <li><a class="tag" href="#" data-length="{{ tag.articles|length }}" data-weight>{{ tag.name }}</a></li>
+                  {% endfor %}
+               </ul>
+            {% endif %}
+         </div>
+      </main>
+   </div>
+{% endblock %}
