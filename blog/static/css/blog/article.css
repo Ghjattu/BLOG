@@ -1,6 +1,5 @@
 .wrapper {
     margin: 0;
-    /*overflow: hidden;*/
     min-height: 100vh;
     background-color: var(--website-background-color);
 }
@@ -153,6 +152,7 @@ main {
     height: 30px;
     border-radius: 5px 5px 0 0;
     background-color: rgba(33, 37, 43, 1);
+    box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.4);
 }
 
 .mac {

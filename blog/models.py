@@ -30,6 +30,8 @@ class Article(db.Model):
     title = db.Column(db.String(100), unique=True)
     body = db.Column(db.Text)
     timestamp = db.Column(db.DateTime, default=datetime.utcnow())
+    year = db.Column(db.String(10))
+    month = db.Column(db.String(10))
 
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
     category = db.relationship('Category', back_populates='articles')

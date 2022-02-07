@@ -29,6 +29,8 @@ def fake_articles(count=50):
             category=Category.query.get(random.randint(1, Category.query.count())),
             tags=[Tag.query.get(random.randint(1, Tag.query.count())) for _ in range(2)]
         )
+        article.year = article.timestamp.year
+        article.month = article.timestamp.month
         db.session.add(article)
         try:
             db.session.commit()

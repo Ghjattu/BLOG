@@ -1,0 +1,168 @@
+.wrapper {
+    margin: 0;
+    min-height: 100vh;
+    background-color: var(--website-background-color);
+}
+
+main {
+    padding: 1.5em;
+}
+
+.archive-header {
+    margin-top: 8em;
+    text-align: center;
+}
+
+.archive-title {
+    display: inline-block;
+    padding-right: .5em;
+    font-size: 1.6rem;
+    font-weight: normal;
+    border-right: 1px dashed #ddd;
+}
+
+.archive-subtitle {
+    margin: 0;
+    padding-left: .5em;
+    color: rgba(119, 119, 119, 1);
+    text-transform: uppercase;
+}
+
+.archive-container {
+    margin: 2em auto;
+    max-width: 1080px;
+}
+
+@media (min-width: 50em) {
+    .archive-container {
+        margin: 3em auto;
+    }
+}
+
+.year {
+    position: relative;
+    display: flex;
+    margin: 0 0 0 15%;
+}
+
+@media (min-width: 35em) {
+    .year {
+        margin: 0 0 0 20%;
+    }
+}
+
+@media (min-width: 50em) {
+    .year {
+        margin: 0 0 0 25%;
+    }
+}
+
+.year:before {
+    content: "";
+    position: absolute;
+    top: -15px;
+    left: -10px;
+    width: 15px;
+    height: 15px;
+    background-color: black;
+    border-radius: 50%;
+}
+
+.year > h2 {
+    position: relative;
+    padding: 0 0 0 1em;
+    font-weight: normal;
+}
+
+.year > h2:before {
+    content: "";
+    position: absolute;
+    top: 30%;
+    left: -10px;
+    width: 15px;
+    height: 15px;
+    background-color: black;
+    border-radius: 50%;
+    border: 3px solid white;
+}
+
+.articles-list {
+    margin: 0;
+}
+
+.articles-list-item {
+    display: flex;
+    margin: 0;
+    align-items: center;
+}
+
+.article-timestamp {
+    display: flex;
+    flex: 15%;
+}
+
+@media (min-width: 35em) {
+    .article-timestamp {
+        flex: 20%;
+    }
+}
+
+@media (min-width: 50em) {
+    .article-timestamp {
+        flex: 25%;
+    }
+}
+
+.article-timestamp > span {
+    margin: 0 0 0 auto;
+    padding: 0 1em 0 0;
+}
+
+.article-title {
+    position: relative;
+    margin: 0;
+    padding: 0 0 0 1em;
+    flex: 85%;
+}
+
+@media (min-width: 35em) {
+    .article-title {
+        flex: 80%;
+    }
+}
+
+@media (min-width: 50em) {
+    .article-title {
+        flex: 75%;
+    }
+}
+
+.article-title:before {
+    content: "";
+    position: absolute;
+    top: 43%;
+    left: -7px;
+    width: 10px;
+    height: 10px;
+    background-color: black;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.article-title p {
+    margin: .5em 0;
+}
+
+.article-title a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color .25s ease;
+}
+
+.article-title a:hover {
+    color: var(--a-hover-color);
+}
+
+.border {
+    border-left: 3px solid black;
+}

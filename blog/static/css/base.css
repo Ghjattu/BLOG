@@ -74,7 +74,8 @@ body * + * {
     margin-top: 1.5em;
 }
 
-a:hover {
+a:hover,
+a:active {
     color: var(--a-hover-color);
 }
 

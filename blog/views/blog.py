@@ -23,3 +23,9 @@ def show_article(article_id):
 def show_tags():
     tags = Tag.query.all()
     return render_template('blog/tags.html', tags=tags)
+
+
+@blog_bp.route('/archive')
+def show_archive():
+    articles = Article.query.order_by(Article.timestamp.desc()).all()
+    return render_template('blog/archive.html', articles=articles)
