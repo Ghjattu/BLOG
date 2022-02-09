@@ -26,7 +26,7 @@
 
 {% block footer %}{% endblock %}
 
-
+<div class="mask" id="mask"></div>
 <nav class="menu" id="menu">
    <h1 class="username">{{ admin.username }}</h1>
    <div class="menu-toggle" id="menu-toggle">
@@ -37,12 +37,21 @@
    <div class="menu-dropdown">
       <ul class="menu-list">
          <li><a href="{{ url_for('blog.index') }}">主页</a></li>
-         <li><a href="#">分类</a></li>
+         <li><a href onclick="return false">分类</a></li>
          <li><a href="{{ url_for('blog.show_tags') }}">标签</a></li>
          <li><a href="{{ url_for('blog.show_archive') }}">归档</a></li>
          <li><a href="#">友链</a></li>
       </ul>
    </div>
+</nav>
+<nav class="mb-menu" id="mb-menu">
+   <ul class="mb-menu-list">
+      <li><a href="{{ url_for('blog.index') }}">主页</a></li>
+      <li><a href onclick="return false">分类</a></li>
+      <li><a href="{{ url_for('blog.show_tags') }}">标签</a></li>
+      <li><a href="{{ url_for('blog.show_archive') }}">归档</a></li>
+      <li><a href="#">友链</a></li>
+   </ul>
 </nav>
 
 <div class="progress-bar" id="progress-bar"></div>

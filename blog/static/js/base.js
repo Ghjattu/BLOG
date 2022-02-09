@@ -32,7 +32,7 @@ window.onload = function () {
         let scrollTop = $window.scrollTop();
         if (lastScrollTop === scrollTop) {
             raf(loop);
-        }else {
+        } else {
             lastScrollTop = scrollTop;
 
             // 如果进行了垂直滚动，执行scroll方法
@@ -49,7 +49,17 @@ $(function () {
     toggleButton.addEventListener('click', function (e) {
         console.log('1');
         e.preventDefault();
-        let menu = document.getElementById('menu');
+        let menu = document.getElementById('menu'),
+            mbMenu = document.getElementById('mb-menu'),
+            mask = document.getElementById('mask');
         menu.classList.toggle('is-open');
+        mbMenu.classList.toggle('is-open');
+        mask.classList.toggle('is-open');
     });
+
+    let top = $(window).scrollTop();
+    let menu = document.getElementById('menu');
+    if (top !== 0) {
+        menu.classList.add('not-at-top');
+    }
 });
