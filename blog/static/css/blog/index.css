@@ -1,7 +1,7 @@
 /* Header */
 header {
     margin: 0;
-    overflow: auto; /* 防止外边距折叠 */
+    overflow: hidden; /* 防止外边距折叠 */
     height: 100vh;
 }
 

@@ -47,15 +47,16 @@ $(function () {
      */
     let toggleButton = document.getElementById('menu-toggle');
     toggleButton.addEventListener('click', function (e) {
-        console.log('1');
         e.preventDefault();
-        let menu = document.getElementById('menu'),
-            mbMenu = document.getElementById('mb-menu'),
-            mask = document.getElementById('mask');
+        let menu = document.getElementById('menu');
         menu.classList.toggle('is-open');
-        mbMenu.classList.toggle('is-open');
-        mask.classList.toggle('is-open');
+
+        let translateElements = document.getElementsByClassName('translate');
+        for (let i = 0; i < translateElements.length; i++) {
+            translateElements[i].classList.toggle('is-open');
+        }
     });
+
 
     let top = $(window).scrollTop();
     let menu = document.getElementById('menu');
