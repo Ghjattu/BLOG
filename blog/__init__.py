@@ -4,7 +4,7 @@ import markdown
 
 from flask import Flask, render_template, Markup
 
-from blog.extensions import db, moment
+from blog.extensions import db, moment, login_manager, csrf
 from blog.models import Admin
 from blog.settings import config
 from blog.views.admin import admin_bp
@@ -38,6 +38,8 @@ def register_blueprints(app):
 def register_extensions(app):
     db.init_app(app)
     moment.init_app(app)
+    login_manager.init_app(app)
+    csrf.init_app(app)
 
 
 def register_shell_context(app):

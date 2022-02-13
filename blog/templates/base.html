@@ -53,6 +53,17 @@
    </ul>
 </nav>
 
+<div class="setting" id="setting">
+   <span class="material-icons">&#xe8b8;</span>
+   <div class="tools" id="tools">
+      {% if current_user.is_authenticated %}
+         <a href="{{ url_for('authorize.logout', next=request.full_path) }}"><span class="material-icons">&#xe9ba;</span></a>
+      {% else %}
+         <a href="{{ url_for('authorize.login', next=request.full_path) }}" target="_blank"><span class="material-icons">&#xea77;</span></a>
+      {% endif %}
+   </div>
+</div>
+
 <div class="progress-bar" id="progress-bar"></div>
 
 <div class="loading">

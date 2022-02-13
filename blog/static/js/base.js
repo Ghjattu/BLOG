@@ -13,13 +13,17 @@ window.onload = function () {
 
     let scroll = function () {
         let top = $(window).scrollTop();
-        let menu = document.getElementById('menu');
+        let menu = document.getElementById('menu'),
+            setting = document.getElementById('setting');
         if (top !== 0) {
             menu.classList.add('not-at-top');
+            setting.classList.add('not-at-top');
         } else {
             menu.classList.remove('not-at-top');
+            setting.classList.remove('not-at-top');
         }
     }
+
     let raf = window.requestAnimationFrame;
     let $window = $(window);
     let lastScrollTop = $window.scrollTop();
@@ -57,10 +61,18 @@ $(function () {
         }
     });
 
+    let setting = document.getElementById('setting');
+    setting.addEventListener('click', function (e) {
+        // e.preventDefault();
+        let tools = document.getElementById('tools');
+        tools.classList.toggle('open');
+    });
+
 
     let top = $(window).scrollTop();
     let menu = document.getElementById('menu');
     if (top !== 0) {
         menu.classList.add('not-at-top');
+        setting.classList.add('not-at-top');
     }
 });

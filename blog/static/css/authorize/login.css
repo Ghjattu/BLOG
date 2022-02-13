@@ -1,0 +1,12 @@
+form {
+    margin: 150px auto;
+    max-width: 500px;
+}
+
+form * + * {
+    margin-top: 10px;
+}
+
+.form-check-label {
+    margin: 0;
+}
