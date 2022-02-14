@@ -22,7 +22,7 @@ def login():
         if admin:
             if username == admin.username and admin.validate_password(password):
                 login_user(admin, remember)
-                return redirect_back()
+                return redirect(url_for('admin.manage'))
     return render_template('authorize/login.html', form=form)
 
 

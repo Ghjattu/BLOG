@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <title>管理</title>
+   <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+   {#   <link rel="stylesheet" href="{{ url_for('static', filename='css/authorize/login.css') }}">#}
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+           integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+           crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+   <div class="d-flex align-items-start">
+      <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+         <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home"
+                 type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">文章管理
+         </button>
+         <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
+                 type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">分类管理
+         </button>
+         <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages"
+                 type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">标签管理
+         </button>
+      </div>
+      <div class="tab-content" id="v-pills-tabContent" style="flex: 1">
+         <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+            <button type="button" class="btn btn-primary">
+               <a href="{{ url_for('admin.new_article') }}" style="color: black" target="_blank">新建文章</a>
+            </button>
+            <table class="table table-hover">
+               <thead>
+               <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">标题</th>
+                  <th scope="col">创建时间</th>
+                  <th scope="col">分类</th>
+                  <th scope="col">操作</th>
+               </tr>
+               </thead>
+               <tbody>
+               {% for article in articles %}
+                  <tr>
+                     <th scope="row">{{ article.id }}</th>
+                     <td>{{ article.title }}</td>
+                     <td>{{ article.timestamp }}</td>
+                     <td>{{ article.category.name }}</td>
+                     <td>
+                        <form method="post"
+                              action="{{ url_for('.delete_article', article_id=article.id, next=request.full_path) }}">
+                           <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                           <button type="submit" class="btn btn-primary" onclick="return confirm('确定删除?')">删除</button>
+                        </form>
+                     </td>
+                  </tr>
+               {% endfor %}
+               </tbody>
+            </table>
+         </div>
+         <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">...</div>
+         <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">...</div>
+      </div>
+   </div>
+</div>
+</body>
+</html>
