@@ -8,16 +8,27 @@
 
 {% block css %}
    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/blog/index.css') }}">
+   <link crossorigin="anonymous" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+         href="https://lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 {% endblock %}
 
 
 {% block script %}
+   <script src="{{ url_for('static', filename='js/moment.min.js') }}"></script>
    <script src="{{ url_for('static', filename='js/blog/index.js') }}"></script>
+   <script>
+       const url = "{{ url_for('blog.load_more') }}";
+
+       // 分页后的总页数
+       const paginationPages = {{ pagination.pages }};
+
+       // 分页后的当前页数
+       let paginationPage = 1;
+   </script>
 {% endblock %}
 
 
 {% block header %}
-
    <header class="translate" id="header">
       <div class="heart-icon">
          <svg x="1641131321775" class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"
@@ -51,31 +62,31 @@
 
 
 {% block main %}
-
    <div class="main-wrapper translate" id="anchor">
       <main>
          <div class="main-title">
             <h1>Article</h1>
             <p>Latest Release</p>
          </div>
-         <div class="main-articles">
+         <div class="main-articles" id="main-articles">
             {% if articles %}
                {% for article in articles %}
                   <article>
                      <aside class="article-image-container">
                         <a href="{{ url_for('.show_article', article_id=article.id) }}">
-                           <img class="article-image" src="https://api.ixiaowai.cn/mcapi/mcapi.php" alt="background-image">
+                           <img class="article-image" src="{{ images[loop.index0] }}"
+                                alt="background-image">
                         </a>
                      </aside>
                      <div class="article-summary">
                         <h3 class="article-title">
                            <a href="{{ url_for('.show_article', article_id=article.id) }}">{{ article.title }}</a>
                         </h3>
-                        <p>{{ article.body|striptags|truncate(length=150, end='......') }}</p>
+                        <p>{{ article.body|striptags|MDfilter|truncate(length=150, end='......') }}</p>
                         <div class="article-tags">
                            {% for tag in article.tags %}
-                              <a class="tag" href="#">
-                                 <span class="material-icons md-18">&#xE9EF;</span>
+                              <a class="tag" href="{{ url_for('blog.show_tag_articles', tag_id=tag.id) }}">
+                                 <i class="fa fa-tags fa-fw"></i>
                                  <span>{{ tag.name }}</span>
                               </a>
                            {% endfor %}
@@ -88,7 +99,31 @@
                {% endfor %}
             {% endif %}
          </div>
+         <div class="pagination">
+            <div class="load-more" id="load-more">
+               <span>点击加载更多</span>
+            </div>
+            <div class="loader" id="loader" title="0">
+               <svg id="loader-1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    width="40px" height="40px" viewBox="0 0 40 40"
+                    xml:space="preserve">
+  <path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946
+    s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634
+    c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z"></path>
+                  <path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0
+    C22.32,8.481,24.301,9.057,26.013,10.047z">
+    <animateTransform attributeType="xml"
+                      attributeName="transform"
+                      type="rotate"
+                      from="0 20 20"
+                      to="360 20 20"
+                      dur="0.5s"
+                      repeatCount="indefinite"></animateTransform>
+    </path>
+  </svg>
+            </div>
+         </div>
       </main>
    </div>
-
 {% endblock %}

@@ -173,6 +173,7 @@ article > .article-image-container {
 }
 
 article > .article-summary {
+    position: relative;
     margin-top: 0;
     padding: 1em;
 }
@@ -273,7 +274,7 @@ article > .article-summary {
 .tag {
     display: flex;
     margin: 0;
-    align-items: center;
+    align-items: flex-end;
     color: var(--article-summary-color);
     text-decoration: none;
     transition: color .25s ease;
@@ -309,6 +310,37 @@ article > .article-summary {
     font-size: .8rem;
     color: var(--article-timestamp-text-color);
     margin: 0;
+}
+
+.pagination {
+    margin-top: 5em;
+    text-align: center;
+}
+
+.pagination > span {
+    color: rgba(126, 126, 126, 1);
+}
+
+.load-more {
+    display: inline-block;
+    margin: 0 auto;
+    padding: 1em 2em;
+    border: 1px solid rgba(214, 214, 214, 1);
+    border-radius: 50px;
+    cursor: pointer;
+    color: rgba(126, 126, 126, 1);
+    transition: all .5s ease;
+}
+
+.load-more:hover {
+    box-shadow: 0 0 4px var(--a-hover-color);
+    color: var(--a-hover-color);
+}
+
+.loader {
+    display: none;
+    margin: 0;
+    padding: 1em 2em;
 }
 
 /* End Main */

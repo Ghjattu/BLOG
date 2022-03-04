@@ -1,11 +1,12 @@
-import click
 import os
-import markdown
+import re
 
-from flask import Flask, render_template, Markup
+import click
+import markdown
+from flask import Flask, Markup, redirect, url_for
 
 from blog.extensions import db, moment, login_manager, csrf
-from blog.models import Admin
+from blog.models import Admin, Category
 from blog.settings import config
 from blog.views.admin import admin_bp
 from blog.views.authorize import authorize_bp
@@ -49,9 +50,21 @@ def register_shell_context(app):
 
 
 def register_error_handlers(app):
+    @app.errorhandler(400)
+    def bad_request(e):
+        return redirect(url_for('blog.index'))
+
     @app.errorhandler(404)
     def page_not_found(e):
-        return render_template('errors/404.html', e=e), 404
+        return redirect(url_for('blog.index'))
+
+    @app.errorhandler(405)
+    def method_not_allowed(e):
+        return redirect(url_for('blog.index'))
+
+    @app.errorhandler(500)
+    def internal_server_error(e):
+        return redirect(url_for('blog.index'))
 
 
 def register_commands(app):
@@ -77,7 +90,8 @@ def register_template_context(app):
     @app.context_processor
     def make_template_context():
         admin = Admin.query.first()
-        return dict(admin=admin)
+        categories = Category.query.all()
+        return dict(admin=admin, categories=categories)
 
 
 def register_template_filter(app):
@@ -89,3 +103,8 @@ def register_template_filter(app):
             'markdown.extensions.toc'
         ]))
         return content
+
+    @app.template_filter('MDfilter')
+    def md_filter(mdcontent):
+        pattern = re.compile(r'[TOC\[\]#$]')
+        return re.sub(pattern, '', mdcontent)

@@ -3,6 +3,8 @@ try:
 except ImportError:
     from urllib.parse import urlparse, urljoin
 
+import json
+import requests
 from flask import request, redirect, url_for
 
 
@@ -19,3 +21,17 @@ def redirect_back(default='blog.index', **kwargs):
         if is_safe_url(target):
             return redirect(target)
     return redirect(url_for(default, **kwargs))
+
+
+def load_image(cnt):
+    url = 'https://api.ixiaowai.cn/mcapi/mcapi.php?return=json'
+    images = []
+    session = requests.Session()
+    for _ in range(cnt):
+        try:
+            response = session.get(url, headers={"Accept": "application/json"})
+            data = json.loads(response.text, strict=False)
+            images.append(data['imgurl'])
+        except json.JSONDecodeError:
+            images.append('https://api.ixiaowai.cn/mcapi/mcapi.php')
+    return images

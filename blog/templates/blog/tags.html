@@ -22,7 +22,8 @@
             {% if tags %}
                <ul class="tag-cloud">
                   {% for tag in tags %}
-                     <li><a class="tag" href="#" data-length="{{ tag.articles|length }}" data-weight>{{ tag.name }}</a></li>
+                     <li><a class="tag" href="{{ url_for('blog.show_tag_articles', tag_id=tag.id) }}"
+                            data-length="{{ tag.articles|length }}" data-weight>{{ tag.name }}</a></li>
                   {% endfor %}
                </ul>
             {% endif %}

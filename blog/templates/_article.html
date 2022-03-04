@@ -1,0 +1,28 @@
+{% if articles %}
+   {% for article in articles %}
+      <article>
+         <aside class="article-image-container">
+            <a href="{{ url_for('.show_article', article_id=article.id) }}">
+               <img class="article-image" src="{{ images[loop.index0] }}" alt="background-image">
+            </a>
+         </aside>
+         <div class="article-summary">
+            <h3 class="article-title">
+               <a href="{{ url_for('.show_article', article_id=article.id) }}">{{ article.title }}</a>
+            </h3>
+            <p>{{ article.body|striptags|truncate(length=150, end='......') }}</p>
+            <div class="article-tags">
+               {% for tag in article.tags %}
+                  <a class="tag" href="#">
+                     <span class="material-icons md-18">&#xE9EF;</span>
+                     <span>{{ tag.name }}</span>
+                  </a>
+               {% endfor %}
+               <div class="article-timestamp">
+                  <span>发布于&nbsp;</span>{{ moment(article.timestamp).format('YYYY-MM-DD') }}
+               </div>
+            </div>
+         </div>
+      </article>
+   {% endfor %}
+{% endif %}

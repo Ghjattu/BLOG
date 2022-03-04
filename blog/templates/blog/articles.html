@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+
+{% block css %}
+   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/blog/archive.css') }}">
+{% endblock %}
+
+
+{% block main %}
+   <div class="wrapper translate">
+      <main>
+         <div class="archive-header">
+            <h1 class="archive-title">
+               {% if is_category %}
+                  {{ category.name }}
+               {% else %}
+                  {{ tag.name }}
+               {% endif %}
+            </h1>
+            <span class="archive-subtitle">
+               {% if is_category %}
+                  category
+               {% else %}
+                  tag
+               {% endif %}
+            </span>
+         </div>
+         <div class="archive-container">
+{#            <div class="year border">#}
+{#               <h2>2022</h2>#}
+{#            </div>#}
+            <div class="articles-list">
+               {% for article in articles %}
+                  <div class="articles-list-item">
+                     <div class="article-timestamp">
+                        {{ moment(article.timestamp).format('MM-DD') }}
+                     </div>
+                     <div class="article-title border">
+                        <p><a href="{{ url_for('.show_article', article_id=article.id) }}">{{ article.title }}</a></p>
+                     </div>
+                  </div>
+               {% endfor %}
+            </div>
+         </div>
+      </main>
+   </div>
+{% endblock %}

@@ -8,7 +8,7 @@ class BaseConfig(object):
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-    BLOG_POST_PER_PAGE = 10
+    BLOG_ARTICLE_PER_PAGE = 10
 
 
 class DevelopmentConfig(BaseConfig):
