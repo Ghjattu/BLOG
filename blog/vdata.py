@@ -4,6 +4,7 @@ from sqlalchemy.exc import IntegrityError
 
 from blog.models import Admin, Article, Category, Tag
 from blog.extensions import db
+from blog.utils import load_image
 from faker import Faker
 
 fake = Faker()
@@ -21,13 +22,15 @@ def fake_admin():
 
 
 def fake_articles(count=50):
+    images = load_image(count)
     for i in range(count):
         article = Article(
             title=fake.sentence(),
             body=fake.text(1000),
             timestamp=fake.date_time_this_year(),
             category=Category.query.get(random.randint(1, Category.query.count())),
-            tags=[Tag.query.get(random.randint(1, Tag.query.count())) for _ in range(2)]
+            tags=[Tag.query.get(random.randint(1, Tag.query.count())) for _ in range(2)],
+            image=images[i]
         )
         article.year = article.timestamp.year
         article.month = article.timestamp.month

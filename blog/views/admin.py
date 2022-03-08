@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, redirect, url_for
 from flask_login import login_required
 from blog.models import Article, Category, Tag
 from blog.extensions import db
-from blog.utils import redirect_back
+from blog.utils import redirect_back, load_image
 from blog.forms import ArticleForm
 
 admin_bp = Blueprint('admin', __name__)
@@ -38,7 +38,8 @@ def new_article():
         body = form.body.data
         category = Category.query.get(form.category.data)
         tags = [Tag.query.get(tag_id) for tag_id in form.tag.data]
-        article = Article(title=title, body=body, category=category, tags=tags)
+        image = load_image(1)[0]
+        article = Article(title=title, body=body, category=category, tags=tags, image=image)
         db.session.add(article)
         db.session.commit()
         return redirect(url_for('blog.show_article', article_id=article.id))

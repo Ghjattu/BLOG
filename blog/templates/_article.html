@@ -3,7 +3,7 @@
       <article>
          <aside class="article-image-container">
             <a href="{{ url_for('.show_article', article_id=article.id) }}">
-               <img class="article-image" src="{{ images[loop.index0] }}" alt="background-image">
+               <img class="article-image" src="{{ article.image }}" alt="background-image">
             </a>
          </aside>
          <div class="article-summary">
