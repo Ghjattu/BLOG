@@ -44,7 +44,7 @@ main {
 .article-main {
     position: relative;
     margin: 2em auto;
-    max-width: 1080px;
+    max-width: 1200px;
 }
 
 @media (min-width: 50em) {
@@ -122,7 +122,7 @@ main {
     }
 
     .article-catalog > .toc > ul {
-        margin: 0 0 0 3em;
+        margin: 0 0 0 2em;
         padding: 0;
     }
 

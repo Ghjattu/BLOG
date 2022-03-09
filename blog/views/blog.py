@@ -25,6 +25,11 @@ def show_tags():
     return render_template('blog/tags.html', tags=tags)
 
 
+@blog_bp.route('/about')
+def about():
+    return render_template('blog/about.html')
+
+
 @blog_bp.route('/archive')
 def show_archive():
     articles = Article.query.order_by(Article.timestamp.desc()).all()

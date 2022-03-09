@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+   {{ admin.username }}
+{% endblock %}
+
+
+{% block css %}
+   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/blog/about.css') }}">
+{% endblock %}
+
+
+{% block main %}
+   <div class="wrapper translate">
+      <main>
+         <div class="container">
+            <h1 class="title about">关于我</h1>
+            <p>这是一个试图再混三年的无业游民。</p>
+            <h1 class="title links">友链</h1>
+            <p><a href="https://qianlinyi.cn/" target="_blank">旺崽的博客</a></p>
+            <p><a href="https://dyhgo.xyz/" target="_blank">dyh的博客</a></p>
+            <h1 class="title contact">联系方式</h1>
+            <p>邮箱:&emsp;<a href="mailto:icracked369@gmail.com">icracked369@gmail.com</a></p>
+         </div>
+      </main>
+   </div>
+{% endblock %}
