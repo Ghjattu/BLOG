@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for
 from flask_login import login_required
 from blog.models import Article, Category, Tag
-from blog.extensions import db
+from blog.extensions import db, cache
 from blog.utils import redirect_back, load_image
 from blog.forms import ArticleForm
 
@@ -27,6 +27,7 @@ def delete_article(article_id):
     article = Article.query.get_or_404(article_id)
     db.session.delete(article)
     db.session.commit()
+    cache.delete('view/%s' % url_for('blog.index'))  # 删除缓存
     return redirect_back()
 
 
@@ -42,5 +43,6 @@ def new_article():
         article = Article(title=title, body=body, category=category, tags=tags, image=image)
         db.session.add(article)
         db.session.commit()
+        cache.delete('view/%s' % url_for('blog.index'))  # 删除缓存
         return redirect(url_for('blog.show_article', article_id=article.id))
     return render_template('admin/new_article.html', form=form)

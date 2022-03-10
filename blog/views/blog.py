@@ -1,12 +1,14 @@
 from flask import Blueprint, render_template, request, current_app
 from blog.models import Article, Tag, Category
+from blog.extensions import cache
 
 blog_bp = Blueprint('blog', __name__)
 
 
 @blog_bp.route('/')
+@cache.cached(timeout=60 * 60)
 def index():
-    page = request.args.get('page', 1, type=int)  # 从查询字符串获取当前页数
+    page = 1
     per_page = current_app.config['BLOG_ARTICLE_PER_PAGE']  # 每页文章数量
     pagination = Article.query.order_by(Article.timestamp.desc()).paginate(page, per_page=per_page, error_out=True)
     articles = pagination.items
@@ -14,29 +16,34 @@ def index():
 
 
 @blog_bp.route('/articles/<int:article_id>')
+@cache.cached(24 * 60 * 60)
 def show_article(article_id):
     article = Article.query.get_or_404(article_id)
     return render_template('blog/article.html', article=article)
 
 
 @blog_bp.route('/tags')
+@cache.cached(timeout=60 * 60)
 def show_tags():
     tags = Tag.query.all()
     return render_template('blog/tags.html', tags=tags)
 
 
 @blog_bp.route('/about')
+@cache.cached(24 * 60 * 60)
 def about():
     return render_template('blog/about.html')
 
 
 @blog_bp.route('/archive')
+@cache.cached(timeout=60 * 60)
 def show_archive():
     articles = Article.query.order_by(Article.timestamp.desc()).all()
     return render_template('blog/archive.html', articles=articles)
 
 
 @blog_bp.route('/categories/<int:category_id>')
+@cache.cached(timeout=60 * 60)
 def show_category_articles(category_id):
     category = Category.query.get_or_404(category_id)
     articles = Article.query.with_parent(category).order_by(Article.timestamp.desc()).all()
@@ -44,6 +51,7 @@ def show_category_articles(category_id):
 
 
 @blog_bp.route('/tags/<int:tag_id>')
+@cache.cached(timeout=60 * 60)
 def show_tag_articles(tag_id):
     tag = Tag.query.get_or_404(tag_id)
     articles = Article.query.with_parent(tag).order_by(Article.timestamp.desc()).all()

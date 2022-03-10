@@ -29,7 +29,7 @@ def load_image(cnt):
     session = requests.Session()
     for _ in range(cnt):
         try:
-            response = session.get(url, headers={"Accept": "application/json"})
+            response = session.get(url, headers={"Accept": "application/json"}, timeout=5)
             data = json.loads(response.text, strict=False)
             images.append(data['imgurl'])
         except json.JSONDecodeError:

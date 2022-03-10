@@ -5,7 +5,7 @@ import click
 import markdown
 from flask import Flask, Markup, redirect, url_for
 
-from blog.extensions import db, moment, login_manager, csrf, toolbar
+from blog.extensions import db, moment, login_manager, csrf, cache
 from blog.models import Admin, Category
 from blog.settings import config
 from blog.views.admin import admin_bp
@@ -41,7 +41,7 @@ def register_extensions(app):
     moment.init_app(app)
     login_manager.init_app(app)
     csrf.init_app(app)
-    # toolbar.init_app(app)
+    cache.init_app(app)
 
 
 def register_shell_context(app):

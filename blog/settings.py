@@ -10,6 +10,8 @@ class BaseConfig(object):
 
     BLOG_ARTICLE_PER_PAGE = 10
 
+    CACHE_NO_NULL_WARNING = True
+
 
 class DevelopmentConfig(BaseConfig):
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'data-dev.db')
@@ -17,6 +19,8 @@ class DevelopmentConfig(BaseConfig):
 
 class ProductionConfig(BaseConfig):
     SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URI', 'sqlite:///' + os.path.join(basedir, 'data.db'))
+
+    CACHE_TYPE = 'simple'
 
 
 config = {
