@@ -16,7 +16,7 @@ def fake_admin():
         blog_title='Ghjattu\'s blog',
         signature='I want to put a ding in the universe.'
     )
-    admin.set_password('123456')
+    admin.set_password('PPq#n@e~Vmep8#8ui7yf')
     db.session.add(admin)
     db.session.commit()
 
