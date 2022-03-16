@@ -8,15 +8,15 @@
 
 {% block css %}
    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/material-darker.min.css') }}">
-   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/blog/article.css') }}">
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css"
          integrity="sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ" crossorigin="anonymous">
+   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/blog/article.css') }}">
 {% endblock %}
 
 
 {% block script %}
    <script src="{{ url_for('static', filename='js/highlight.min.js') }}"></script>
-   <script>hljs.highlightAll();</script>
+   <script nonce="{{ csp_nonce() }}">hljs.highlightAll();</script>
    <script src="{{ url_for('static', filename='js/blog/article.js') }}"></script>
    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.js"
            integrity="sha384-VQ8d8WVFw0yHhCk5E8I86oOhv48xLpnDZx5T9GogA/Y84DcCKWXDmSDfn13bzFZY"
@@ -24,7 +24,7 @@
    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/auto-render.min.js"
            integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR"
            crossorigin="anonymous"></script>
-   <script>
+   <script nonce="{{ csp_nonce() }}">
        document.addEventListener("DOMContentLoaded", function () {
            renderMathInElement(document.body, {
                // customised options
@@ -49,7 +49,9 @@
       <main>
          <div class="article-info">
             <h2 class="article-title">{{ article.title }}</h2>
-            <p class="article-timestamp"><span>发布于</span>:{{ moment(article.timestamp).format('YYYY-MM-DD') }}</p>
+            <p class="article-timestamp">
+               <span>发布于</span>:<span class="flask-moment">{{ article.timestamp }}</span>
+            </p>
          </div>
          <div class="article-main">
             <div class="filling"></div>

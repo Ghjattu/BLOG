@@ -12,6 +12,13 @@ class BaseConfig(object):
 
     CACHE_NO_NULL_WARNING = True
 
+    MAIL_SERVER = os.getenv('MAIL_SERVER')
+    MAIL_PORT = 465
+    MAIL_USE_SSL = True
+    MAIL_USERNAME = os.getenv('MAIL_USERNAME')
+    MAIL_PASSWORD = os.getenv('SENDGRID_API_KEY')
+    MAIL_DEFAULT_SENDER = ('Ghjattu', os.getenv('MAIL_USERNAME'))
+
 
 class DevelopmentConfig(BaseConfig):
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'data-dev.db')

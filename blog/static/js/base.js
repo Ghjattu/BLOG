@@ -62,6 +62,7 @@ $(function () {
         }
     });
 
+
     /*
      *  页面右下角的设置按钮
      */
@@ -71,6 +72,7 @@ $(function () {
         let tools = document.getElementById('tools');
         tools.classList.toggle('open');
     });
+
 
     /*
      *  导航栏中的分类菜单
@@ -98,6 +100,7 @@ $(function () {
         mobileCategoryList.classList.toggle('open');
     });
 
+
     /*
      *  根据页面刷新时滚动条的位置设置导航栏的背景样式
      */
@@ -106,5 +109,16 @@ $(function () {
     if (top !== 0) {
         menu.classList.add('not-at-top');
         setting.classList.add('not-at-top');
+    }
+
+
+    /*
+     *  格式化时间戳
+     */
+    let timestamps = document.getElementsByClassName('flask-moment');
+    for (let i = 0; i < timestamps.length; i++) {
+        // timestamps[i].style.display = 'block';
+        let timestamp = timestamps[i].dataset.timestamp;
+        timestamps[i].textContent = moment(timestamp).format('YYYY-MM-DD');
     }
 });
