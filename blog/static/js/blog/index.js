@@ -63,7 +63,7 @@ $(function () {
                 // 格式化时间戳
                 let timestamps = document.getElementsByClassName('flask-moment');
                 for (let i = 0; i < timestamps.length; i++) {
-                    timestamps[i].style.display = 'block';
+                    // timestamps[i].style.display = 'block';
                     let timestamp = timestamps[i].dataset.timestamp;
                     timestamps[i].textContent = moment(timestamp).format('YYYY-MM-DD');
                 }

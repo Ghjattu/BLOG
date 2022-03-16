@@ -9,12 +9,13 @@
    <link href="https://fonts.geekzu.org/icon?family=Material+Icons" rel="stylesheet">
    {% block css %}{% endblock %}
 
+   <script src="{{ url_for('static', filename='js/moment.min.js') }}"></script>
    <script src="{{ url_for('static', filename='js/jquery-3.6.0.min.js') }}"></script>
    <script src="{{ url_for('static', filename='js/base.js') }}"></script>
    {% block script %}{% endblock %}
 
-   {{ moment.include_moment(local_js=url_for('static', filename='js/moment-with-locales.min.js')) }}
-   {{ moment.lang('zh-CN') }}
+   {#   {{ moment.include_moment(local_js=url_for('static', filename='js/moment-with-locales.min.js')) }}#}
+   {#   {{ moment.lang('zh-CN') }}#}
 </head>
 <body>
 
@@ -40,7 +41,9 @@
             <a href onclick="return false">分类</a>
             <ul class="category-list" id="category-list">
                {% for category in categories %}
-                  <li><a href="{{ url_for('blog.show_category_articles', category_id=category.id) }}">{{ category.name }}</a></li>
+                  <li>
+                     <a href="{{ url_for('blog.show_category_articles', category_id=category.id) }}">{{ category.name }}</a>
+                  </li>
                {% endfor %}
             </ul>
          </li>
@@ -57,7 +60,9 @@
          <a href onclick="return false">分类</a>
          <ul class="mb-category-list" id="mb-category-list">
             {% for category in categories %}
-               <li><a href="{{ url_for('blog.show_category_articles', category_id=category.id) }}">{{ category.name }}</a></li>
+               <li>
+                  <a href="{{ url_for('blog.show_category_articles', category_id=category.id) }}">{{ category.name }}</a>
+               </li>
             {% endfor %}
          </ul>
       </li>

@@ -19,7 +19,8 @@
                   </a>
                {% endfor %}
                <div class="article-timestamp">
-                  <span>发布于&nbsp;</span>{{ moment(article.timestamp).format('YYYY-MM-DD') }}
+                  <span>发布于&nbsp;</span>
+                  <span class="flask-moment">{{ article.timestamp }}</span>
                </div>
             </div>
          </div>

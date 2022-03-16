@@ -21,7 +21,7 @@
                {% for article in articles %}
                   <div class="articles-list-item">
                      <div class="article-timestamp">
-                        {{ moment(article.timestamp).format('MM-DD') }}
+                        <span class="flask-moment">{{ article.timestamp }}</span>
                      </div>
                      <div class="article-title border">
                         <p><a href="{{ url_for('.show_article', article_id=article.id) }}">{{ article.title }}</a></p>

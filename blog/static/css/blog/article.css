@@ -83,14 +83,18 @@ main {
     }
 }
 
-@media (min-width: 50em) {
-    .filling {
-        flex: 1;
-    }
+.katex-display > .katex {
+    white-space: normal
+}
 
-    .article-body {
-        flex: 5;
-    }
+/* Add space between broken lines: */
+.katex-display .base {
+    margin: 0.25em 0
+}
+
+/* Compensate by reducing space around display math */
+.katex-display {
+    margin: 0.5em 0;
 }
 
 .article-body > pre {
@@ -110,6 +114,14 @@ main {
 }
 
 @media (min-width: 75em) {
+    .filling {
+        flex: 1;
+    }
+
+    .article-body {
+        flex: 5;
+    }
+
     .article-catalog {
         flex: 1;
         margin: 0;

@@ -518,25 +518,45 @@ a:active {
 
 .circle-1 {
     background-color: rgba(255, 182, 185, 1);
+    -webkit-animation: circle-1-move 2s ease infinite;
     animation: circle-1-move 2s ease infinite;
 }
 
 .circle-2 {
     background-color: rgba(250, 227, 217, 1);
+    -webkit-animation: circle-2-move 2s ease infinite;
     animation: circle-2-move 2s ease infinite;
 }
 
 .circle-3 {
     background-color: rgba(187, 222, 214, 1);
+    -webkit-animation: circle-3-move 2s ease infinite;
     animation: circle-3-move 2s ease infinite;
 }
 
 .circle-4 {
     background-color: rgba(138, 198, 209, 1);
+    -webkit-animation: circle-4-move 2s ease infinite;
     animation: circle-4-move 2s ease infinite;
 }
 
 /* End Loading */
+
+
+@-webkit-keyframes circle-1-move {
+    25% {
+        transform: translateX(75px);
+    }
+    50% {
+        transform: translate(75px, 75px);
+    }
+    75% {
+        transform: translateY(75px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
 
 
 @keyframes circle-1-move {
@@ -548,6 +568,21 @@ a:active {
     }
     75% {
         transform: translateY(75px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+@-webkit-keyframes circle-2-move {
+    25% {
+        transform: translateY(75px);
+    }
+    50% {
+        transform: translate(-75px, 75px);
+    }
+    75% {
+        transform: translateX(-75px);
     }
     100% {
         transform: translate(0, 0);
@@ -569,6 +604,21 @@ a:active {
     }
 }
 
+@-webkit-keyframes circle-3-move {
+    25% {
+        transform: translateY(-75px);
+    }
+    50% {
+        transform: translate(75px, -75px);
+    }
+    75% {
+        transform: translateX(75px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
 @keyframes circle-3-move {
     25% {
         transform: translateY(-75px);
@@ -578,6 +628,21 @@ a:active {
     }
     75% {
         transform: translateX(75px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+@-webkit-keyframes circle-4-move {
+    25% {
+        transform: translateX(-75px);
+    }
+    50% {
+        transform: translate(-75px, -75px);
+    }
+    75% {
+        transform: translateY(-75px);
     }
     100% {
         transform: translate(0, 0);
