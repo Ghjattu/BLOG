@@ -102,7 +102,7 @@ def register_commands(app):
     @app.cli.command()
     @click.option('--category', default=10)
     @click.option('--tag', default=5)
-    @click.option('--article', default=50)
+    @click.option('--article', default=20)
     def forge(category, tag, article):
         from blog.vdata import fake_admin, fake_articles, fake_categories, fake_tags
 

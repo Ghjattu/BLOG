@@ -30,19 +30,19 @@ class ArticleForm(FlaskForm):
 
 class CategoryForm(FlaskForm):
     name = StringField(u'分类名', validators=[DataRequired(), Length(1, 20)])
-    submit = SubmitField()
+    new_category_submit = SubmitField()
 
     @staticmethod
-    def validate_name(field):
+    def validate_name(self, field):
         if Category.query.filter_by(name=field.data).first():
             raise ValidationError(u'存在同名分类')
 
 
 class TagForm(FlaskForm):
     name = StringField(u'标签名', validators=[DataRequired(), Length(1, 20)])
-    submit = SubmitField()
+    new_tag_submit = SubmitField()
 
     @staticmethod
-    def validate_name(field):
+    def validate_name(self, field):
         if Tag.query.filter_by(name=field.data).first():
             raise ValidationError(u'存在同名标签')

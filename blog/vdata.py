@@ -21,7 +21,7 @@ def fake_admin():
     db.session.commit()
 
 
-def fake_articles(count=50):
+def fake_articles(count=20):
     images = load_image(count)
     for i in range(count):
         article = Article(
@@ -29,7 +29,7 @@ def fake_articles(count=50):
             body=fake.text(1000),
             timestamp=fake.date_time_this_year(),
             category=Category.query.get(random.randint(1, Category.query.count())),
-            tags=[Tag.query.get(random.randint(1, Tag.query.count())) for _ in range(2)],
+            tags=[Tag.query.get(i + 1) for i in range(2)],
             image=images[i]
         )
         article.year = article.timestamp.year

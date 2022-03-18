@@ -1,0 +1,15 @@
+a {
+    color: black;
+}
+
+.tab-content {
+    flex: 1;
+}
+
+.new-tag-table {
+    display: none;
+}
+
+.new-tag-table.open {
+    display: block;
+}
