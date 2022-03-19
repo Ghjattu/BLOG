@@ -8,6 +8,19 @@ $(function () {
         }
     });
 
+    if (paginationPage === paginationPages) {
+        // 创建新的span节点
+        let newSpan = document.createElement('span');
+        newSpan.textContent = '没有更多啦...';
+
+        // 获取“点击加载更多”按钮和父节点
+        let loadMoreButton = document.getElementById('load-more');
+        let parent = loadMoreButton.parentNode;
+
+        // 用新的span节点替换按钮
+        parent.replaceChild(newSpan, loadMoreButton);
+    }
+
 
     /*
      * 点击加载更多
