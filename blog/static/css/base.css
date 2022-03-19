@@ -139,7 +139,7 @@ a:active {
 /* Background Image */
 .bg-image {
     position: fixed;
-    height: 100%;
+    height: 100vh;
     width: 100%;
     background-image: url("../images/bg-image-sm.jpg");
     background-position: center;
