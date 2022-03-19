@@ -1,5 +1,6 @@
 /* Header */
 header {
+    position: relative;
     margin: 0;
     overflow: hidden; /* 防止外边距折叠 */
     height: 100vh;
@@ -114,15 +115,15 @@ header > p {
 
 main {
     max-width: 1080px;
-    margin: 4em auto;
-    padding: 2em;
+    margin: 0 auto;
+    padding: 6em 2em;
 }
 
-@media (min-width: 50em) {
-    main {
-        margin: 6em auto;
-    }
-}
+/*@media (min-width: 50em) {*/
+/*    main {*/
+/*        margin: 6em auto;*/
+/*    }*/
+/*}*/
 
 .main-title {
     margin-bottom: 1em;
