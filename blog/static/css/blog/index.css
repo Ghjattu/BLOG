@@ -1,7 +1,9 @@
 /* Header */
 header {
+    position: relative;
     margin: 0;
     overflow: hidden; /* 防止外边距折叠 */
+    background-color: rgba(255, 255, 0, 0.7);
     height: 100vh;
 }
 
