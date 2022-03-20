@@ -6,7 +6,7 @@ blog_bp = Blueprint('blog', __name__)
 
 
 @blog_bp.route('/')
-@cache.cached(timeout=60 * 60)
+@cache.cached(timeout=10 * 60)
 def index():
     page = 1
     per_page = current_app.config['BLOG_ARTICLE_PER_PAGE']  # 每页文章数量
@@ -23,7 +23,7 @@ def show_article(article_id):
 
 
 @blog_bp.route('/tags')
-@cache.cached(timeout=60 * 60)
+@cache.cached(timeout=10 * 60)
 def show_tags():
     tags = Tag.query.all()
     return render_template('blog/tags.html', tags=tags)
@@ -36,14 +36,14 @@ def about():
 
 
 @blog_bp.route('/archive')
-@cache.cached(timeout=60 * 60)
+@cache.cached(timeout=10 * 60)
 def show_archive():
     articles = Article.query.order_by(Article.timestamp.desc()).all()
     return render_template('blog/archive.html', articles=articles)
 
 
 @blog_bp.route('/categories/<int:category_id>')
-@cache.cached(timeout=60 * 60)
+@cache.cached(timeout=10 * 60)
 def show_category_articles(category_id):
     category = Category.query.get_or_404(category_id)
     articles = Article.query.with_parent(category).order_by(Article.timestamp.desc()).all()
@@ -51,7 +51,7 @@ def show_category_articles(category_id):
 
 
 @blog_bp.route('/tags/<int:tag_id>')
-@cache.cached(timeout=60 * 60)
+@cache.cached(timeout=10 * 60)
 def show_tag_articles(tag_id):
     tag = Tag.query.get_or_404(tag_id)
     articles = Article.query.with_parent(tag).order_by(Article.timestamp.desc()).all()

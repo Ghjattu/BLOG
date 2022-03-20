@@ -8,6 +8,11 @@ $(function () {
         }
     });
 
+
+    // 当前页数
+    let paginationPage = 1;
+    // 总页数
+    const paginationPages = Number(document.getElementById('main-articles').dataset.paginationPages);
     if (paginationPage === paginationPages) {
         // 创建新的span节点
         let newSpan = document.createElement('span');
@@ -19,6 +24,12 @@ $(function () {
 
         // 用新的span节点替换按钮
         parent.replaceChild(newSpan, loadMoreButton);
+    }
+    // 格式化时间戳
+    let timestamps = document.getElementsByClassName('moment');
+    for (let i = 0; i < timestamps.length; i++) {
+        let timestamp = timestamps[i].textContent;
+        timestamps[i].textContent = moment(timestamp).format('YYYY-MM-DD');
     }
 
 
@@ -34,9 +45,10 @@ $(function () {
 
         $.ajax({
             type: 'GET',
-            url: url,
+            url: '/load_more',
             dataType: 'html',
             data: {
+                // 传参
                 page: paginationPage + 1,
             },
             success: function (data) {
@@ -74,10 +86,9 @@ $(function () {
                 }
 
                 // 格式化时间戳
-                let timestamps = document.getElementsByClassName('flask-moment');
+                let timestamps = document.getElementsByClassName('moment');
                 for (let i = 0; i < timestamps.length; i++) {
-                    // timestamps[i].style.display = 'block';
-                    let timestamp = timestamps[i].dataset.timestamp;
+                    let timestamp = timestamps[i].textContent;
                     timestamps[i].textContent = moment(timestamp).format('YYYY-MM-DD');
                 }
             }

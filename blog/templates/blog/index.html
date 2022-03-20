@@ -14,17 +14,7 @@
 
 
 {% block script %}
-{#   <script src="{{ url_for('static', filename='js/moment.min.js') }}"></script>#}
    <script src="{{ url_for('static', filename='js/blog/index.js') }}"></script>
-   <script nonce="{{ csp_nonce() }}">
-       const url = "{{ url_for('blog.load_more') }}";
-
-       // 分页后的总页数
-       const paginationPages = {{ pagination.pages }};
-
-       // 分页后的当前页数
-       let paginationPage = 1;
-   </script>
 {% endblock %}
 
 
@@ -68,7 +58,7 @@
             <h1>Article</h1>
             <p>Latest Release</p>
          </div>
-         <div class="main-articles" id="main-articles">
+         <div class="main-articles" id="main-articles" data-pagination-pages="{{ pagination.pages }}">
             {% if articles %}
                {% for article in articles %}
                   <article>
@@ -92,7 +82,7 @@
                            {% endfor %}
                            <div class="article-timestamp">
                               <span>发布于&nbsp;</span>
-                              <span class="flask-moment">{{ article.timestamp }}</span>
+                              <span class="moment">{{ article.timestamp }}</span>
                            </div>
                         </div>
                      </div>
